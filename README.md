@@ -2,6 +2,14 @@
 
 The website is created using AWS S3 and Cloudfront. It is a relatively well established pattern and a terraform module was selected to achieve what is required. Here were the [list of modules](https://registry.terraform.io/search/modules?q=cloudfront%20static%20site) considered. Of which, only the first two are actively maintained. [SPHTech-Platform's module](https://registry.terraform.io/modules/SPHTech-Platform/s3-cloudfront-static-site/aws/latest#provider_aws) was selected in the end due to it having a more trimmed down implementation.
 
+To cover some basics of what I looked for in the module:  
+- CloudFront and S3 integration with Origin Access Identity to ensure only CloudFront can access the S3.
+- Handling of ACM for TLS certificate (whether the ability to plug in the ARN externally or automatically provisioning it within the template)
+- Route53 for domain name provisioning
+- Ability to output s3 bucket name and CloudFront distribution ID to facilitate deployment.
+
+Essentially I expected the template to be a one stop shop for everything needed and that there should be no further manual intervention required.
+
 ## Usage
 
 From git repository root
